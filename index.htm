@@ -12,26 +12,19 @@
         
     </div>
     <script>
-        const container = document.getElementsByClassName('container');
+       const container = document.getElementById('container');
         const request = new XMLHttpRequest();
-        request.open('GET' , "https://restcountries.com/v3.1/name/nepal");
+        request.open('GET', "https://restcountries.com/v3.1/name/nepal");
         request.send();
-        request.addEventListener('load' , function(){
+        request.addEventListener('load', function () {
             const [data] = JSON.parse(this.responseText);
             console.log(data);
-            const htmlData = `
-            <img src="${data.flags}" alt="">
-            <div class="name">
-                ${data.name}
-            </div>
-            <div class="info">
-                ${data.capital}
-            </div>
+            const xyz = `
+            <img src="${data.flags.png}" alt="" srcset="">
             
-            `;
-                container.insertAdjacentHTML("afterbegin" , htmlData );
+            `
+            container.insertAdjacentHTML('afterbegin', xyz)
         })
-   
     </script>
 </body>
 </html>
