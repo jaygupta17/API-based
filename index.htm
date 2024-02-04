@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        
+    </div>
+    <script>
+        const container = document.getElementsByClassName('container');
+        const request = new XMLHttpRequest();
+        request.open('GET' , "https://restcountries.com/v3.1/name/nepal");
+        request.send();
+        request.addEventListener('load' , function(){
+            const [data] = JSON.parse(this.responseText);
+            console.log(data);
+            const htmlData = `
+            <img src="${data.flags}" alt="">
+            <div class="name">
+                ${data.name}
+            </div>
+            <div class="info">
+                ${data.capital}
+            </div>
+            
+            `;
+        })
+       container.insertAdjacentHTML("afterbegin" , htmlData );
+    </script>
+</body>
+</html>
